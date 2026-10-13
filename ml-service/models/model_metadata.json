@@ -1,0 +1,62 @@
+{
+  "version": "v1.0-rf",
+  "algorithm": "Gradient Boosting Regressor",
+  "best_r2_score": 0.988,
+  "best_mae": 725032.09,
+  "best_rmse": 1094437.0,
+  "best_mape": 0.047,
+  "comparison_metrics": {
+    "Linear Regression": {
+      "r2_score": 0.9206,
+      "mae": 1886367.64,
+      "rmse": 2819730.84,
+      "mape": 0.1543
+    },
+    "Decision Tree Regressor": {
+      "r2_score": 0.9491,
+      "mae": 1407296.23,
+      "rmse": 2256672.64,
+      "mape": 0.0891
+    },
+    "Random Forest Regressor": {
+      "r2_score": 0.9787,
+      "mae": 943594.44,
+      "rmse": 1460637.99,
+      "mape": 0.0628
+    },
+    "Gradient Boosting Regressor": {
+      "r2_score": 0.988,
+      "mae": 725032.09,
+      "rmse": 1094437.0,
+      "mape": 0.047
+    },
+    "XGBoost Regressor": {
+      "r2_score": 0.9847,
+      "mae": 798805.49,
+      "rmse": 1237501.06,
+      "mape": 0.0504
+    }
+  },
+  "top_feature_importance": {
+    "num__area": 0.4315,
+    "num__carpet_area": 0.2618,
+    "num__location_score": 0.1605,
+    "num__locality_base_rate": 0.1038,
+    "num__property_age": 0.0096,
+    "cat__property_type_Penthouse": 0.0069,
+    "cat__property_type_Apartment": 0.0053,
+    "cat__furnishing_Fully Furnished": 0.0033,
+    "cat__locality_Indiranagar": 0.0032,
+    "num__amenities_count": 0.002,
+    "num__total_floors": 0.002,
+    "num__area_per_bedroom": 0.0014,
+    "cat__locality_Electronic City": 0.0013,
+    "num__floor_ratio": 0.0011,
+    "cat__property_type_Villa": 0.001
+  },
+  "dataset": "bangalore_house_prices.csv",
+  "training_samples": 2400,
+  "test_samples": 600,
+  "trained_at": "2026-09-15T19:16:20.863925",
+  "status": "active"
+}

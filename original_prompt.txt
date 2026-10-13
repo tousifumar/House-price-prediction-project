@@ -1,0 +1,2014 @@
+<USER_REQUEST>
+# HOUSE PRICE PREDICTOR — COMPLETE FULL-STACK DEVELOPMENT PROMPT
+
+## 1. PROJECT OVERVIEW
+
+Build a complete, production-ready web application called:
+
+# "House Price Predictor"
+
+The application is an AI/ML-powered real-estate property valuation platform.
+
+The primary purpose of the application is to allow users to enter detailed property information and receive an estimated market price using a trained Machine Learning model.
+
+The system should not behave like a simple ML demo. Build it as a complete SaaS-style real-estate platform with:
+
+* Modern responsive frontend
+* User authentication
+* Property price prediction
+* Machine Learning API
+* Prediction history
+* Property comparison
+* Market analytics
+* Location/locality analysis
+* Saved properties
+* Price alerts
+* PDF valuation reports
+* Admin dashboard
+* Dataset management
+* ML model management
+* Model performance analytics
+* REST APIs
+* Proper database architecture
+* Secure authentication and authorization
+
+The application must be modular, scalable, maintainable and production-ready.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+## Backend
+
+Use:
+
+* Laravel
+* PHP 8.2+
+* Laravel API
+* MySQL
+* Laravel Sanctum for API authentication
+* Laravel Queues where appropriate
+* Laravel Scheduler for automated jobs
+* Laravel Notifications
+* Laravel Storage
+
+## Frontend
+
+Use:
+
+* Laravel Blade OR a clean Laravel frontend architecture
+* Tailwind CSS
+* Alpine.js where useful
+* JavaScript
+* Chart.js for charts
+* Responsive design
+
+Use Vite for asset bundling.
+
+## Machine Learning
+
+Use Python.
+
+Libraries:
+
+* Python 3.11+
+* Pandas
+* NumPy
+* Scikit-learn
+* XGBoost
+* Joblib
+* Matplotlib where needed for offline model analysis
+
+## ML API
+
+Use:
+
+* FastAPI
+* Uvicorn
+
+Laravel communicates with the Python ML service through REST APIs.
+
+## Database
+
+Use:
+
+* MySQL
+
+---
+
+# 3. HIGH-LEVEL ARCHITECTURE
+
+Implement the following architecture:
+
+User
+↓
+Laravel Frontend
+↓
+Laravel Backend/API
+↓
+Validation + Feature Preparation
+↓
+Python FastAPI ML Service
+↓
+Trained ML Model
+↓
+Prediction
+↓
+Laravel
+↓
+Prediction Result Dashboard
+
+Architecture:
+
+```
+                HOUSE PRICE PREDICTOR
+                        |
+          ┌─────────────┴─────────────┐
+          |                           |
+     Laravel App                 Python ML
+          |                       Service
+          |                           |
+   ┌──────┴──────┐             ┌──────┴──────┐
+   |             |             |             |
+ MySQL         REST API     ML Model      Analytics
+   |             |             |
+   └─────────────┴─────────────┘
+```
+
+Keep the ML service independent from Laravel so the model can be retrained or replaced without changing the main application.
+
+---
+
+# 4. USER ROLES
+
+Implement at least two roles:
+
+## User
+
+Can:
+
+* Register
+* Login
+* Logout
+* Update profile
+* Predict property price
+* View prediction results
+* View prediction history
+* Save properties
+* Compare properties
+* Create price alerts
+* Download valuation reports
+
+## Admin
+
+Can:
+
+* Login to admin panel
+* Manage users
+* Manage properties
+* Manage locations
+* Manage localities
+* Manage amenities
+* Manage datasets
+* Upload datasets
+* Trigger model training
+* View ML models
+* Activate/deactivate models
+* View model metrics
+* View prediction statistics
+* Manage market data
+* View system activity/logs
+
+Use proper middleware and authorization policies.
+
+---
+
+# 5. WEBSITE DESIGN
+
+Create a premium modern real-estate SaaS UI.
+
+Design requirements:
+
+* Clean
+* Professional
+* Minimal
+* Trustworthy
+* Modern
+* Responsive
+* Mobile-first
+* Good typography
+* Proper spacing
+* Cards with subtle shadows
+* Rounded corners
+* Smooth hover effects
+* Professional dashboard
+* Accessible forms
+* Clear call-to-action buttons
+
+Do not make the interface look like a basic college project.
+
+The application should feel like a real commercial property analytics product.
+
+---
+
+# 6. PUBLIC WEBSITE
+
+Create the following public pages:
+
+## Home
+
+Sections:
+
+1. Hero
+2. Property Price Prediction CTA
+3. How It Works
+4. Features
+5. Market Statistics
+6. Supported Locations
+7. Why Use House Price Predictor
+8. Prediction Process
+9. Testimonials
+10. FAQ
+11. CTA
+12. Footer
+
+Hero heading:
+
+"Know Your Property's Worth Before You Buy or Sell"
+
+Subheading:
+
+"Get an AI-powered property price estimate based on location, property specifications and real-estate market patterns."
+
+Buttons:
+
+* Predict House Price
+* Explore Features
+
+---
+
+# 7. HOW IT WORKS
+
+Display a 4-step process:
+
+Step 1:
+Enter Property Details
+
+Step 2:
+Select Location
+
+Step 3:
+AI Analyzes Property
+
+Step 4:
+Get Estimated Market Price
+
+Use icons and clean cards.
+
+---
+
+# 8. PROPERTY PRICE PREDICTION
+
+Create a dedicated prediction page.
+
+URL example:
+
+/predict
+
+The form should contain the following sections.
+
+## Property Information
+
+Fields:
+
+* Property Type
+* Transaction Type
+* Location
+* Locality
+* Built-up Area
+* Carpet Area
+* Bedrooms
+* Bathrooms
+* Balconies
+
+Property Type options:
+
+* Apartment
+* Villa
+* Independent House
+* Builder Floor
+* Penthouse
+* Plot
+* Studio
+
+Transaction Type:
+
+* Sale
+* Rent
+
+Initially prioritize SALE prediction.
+
+---
+
+# 9. BUILDING INFORMATION
+
+Fields:
+
+* Floor Number
+* Total Floors
+* Property Age
+* Construction Year
+* Property Condition
+
+Condition:
+
+* New
+* Excellent
+* Good
+* Average
+* Needs Renovation
+
+---
+
+# 10. FURNISHING
+
+Options:
+
+* Unfurnished
+* Semi-Furnished
+* Fully Furnished
+
+---
+
+# 11. AMENITIES
+
+Allow multiple amenities.
+
+Examples:
+
+* Parking
+* Lift
+* Security
+* CCTV
+* Gym
+* Swimming Pool
+* Club House
+* Garden
+* Power Backup
+* Children's Play Area
+* Sports Facility
+* Visitor Parking
+* Air Conditioning
+* Internet
+* Gas Pipeline
+
+Store amenities relationally rather than as an unstructured text field.
+
+---
+
+# 12. LOCATION
+
+Location should be an important ML feature.
+
+Fields:
+
+* Country
+* State
+* City
+* Locality
+* Pincode
+* Latitude
+* Longitude
+
+Design the location selection so that users can select:
+
+City → Locality
+
+Example:
+
+Bangalore
+↓
+Whitefield
+
+Bangalore
+↓
+Electronic City
+
+Bangalore
+↓
+HSR Layout
+
+Bangalore
+↓
+Koramangala
+
+---
+
+# 13. MAP SUPPORT
+
+Create optional map support.
+
+Allow users to select a property location on a map.
+
+When a location is selected:
+
+* Store latitude
+* Store longitude
+* Identify locality if possible
+* Use coordinates as optional ML features
+
+Keep the map integration abstract/configurable so an administrator can configure the provider later.
+
+---
+
+# 14. PREDICTION BUTTON
+
+At the end of the form:
+
+"Predict House Price"
+
+Before submitting:
+
+* Validate all fields
+* Display validation messages
+* Prevent invalid values
+* Show loading state
+* Prevent duplicate requests
+
+Example:
+
+Predicting...
+
+Then call the Laravel backend.
+
+---
+
+# 15. PREDICTION API
+
+Create:
+
+POST /api/predict
+
+Request:
+
+{
+"property_type": "Apartment",
+"transaction_type": "Sale",
+"city": "Bangalore",
+"locality": "Whitefield",
+"area": 1500,
+"carpet_area": 1300,
+"bedrooms": 3,
+"bathrooms": 2,
+"balconies": 2,
+"floor": 8,
+"total_floors": 15,
+"property_age": 5,
+"furnishing": "Semi-Furnished",
+"parking": true,
+"latitude": null,
+"longitude": null,
+"amenities": [
+"Gym",
+"Lift",
+"Security"
+]
+}
+
+Laravel should validate the request and communicate with the Python ML service.
+
+---
+
+# 16. PYTHON ML SERVICE
+
+Create a separate folder:
+
+/ml-service
+
+Structure:
+
+ml-service/
+app/
+main.py
+schemas.py
+predictor.py
+preprocessing.py
+model_loader.py
+models/
+datasets/
+training/
+requirements.txt
+README.md
+
+FastAPI endpoints:
+
+POST /predict
+
+GET /health
+
+GET /model-info
+
+POST /reload-model
+
+---
+
+# 17. ML DATASET
+
+Create a sample dataset structure.
+
+Columns:
+
+* id
+* city
+* locality
+* property_type
+* area
+* carpet_area
+* bedrooms
+* bathrooms
+* balconies
+* floor
+* total_floors
+* property_age
+* furnishing
+* parking
+* latitude
+* longitude
+* amenities_count
+* price
+
+Target:
+
+price
+
+The code must be designed so a real CSV dataset can later replace the sample dataset.
+
+---
+
+# 18. DATA PREPROCESSING
+
+Implement a complete preprocessing pipeline.
+
+Requirements:
+
+* Remove duplicates
+* Handle missing values
+* Handle invalid values
+* Normalize numerical fields
+* Encode categorical variables
+* Handle outliers
+* Feature engineering
+* Train/test split
+* Save preprocessing pipeline
+
+Use a reproducible preprocessing pipeline.
+
+Do not manually preprocess training and prediction data differently.
+
+Use the same saved preprocessing pipeline during inference.
+
+---
+
+# 19. FEATURE ENGINEERING
+
+Create useful derived features.
+
+Examples:
+
+price_per_sqft
+
+property_age
+
+area_per_bedroom
+
+bathroom_per_bedroom
+
+floor_ratio
+
+amenities_count
+
+location_score
+
+distance-based features if location data is available
+
+Example:
+
+property_age = current_year - construction_year
+
+area_per_bedroom = area / bedrooms
+
+---
+
+# 20. MACHINE LEARNING MODELS
+
+Train and compare multiple models:
+
+1. Linear Regression
+2. Decision Tree Regressor
+3. Random Forest Regressor
+4. Gradient Boosting Regressor
+5. XGBoost Regressor
+
+Evaluate:
+
+* MAE
+* MSE
+* RMSE
+* R² Score
+* MAPE where appropriate
+
+Automatically identify the best-performing model based on validation performance.
+
+Save:
+
+* Model
+* Preprocessing pipeline
+* Feature metadata
+* Model metrics
+* Training date
+* Dataset version
+
+Use Joblib for model persistence.
+
+---
+
+# 21. MODEL VERSIONING
+
+Every trained model must have a version.
+
+Example:
+
+v1.0
+v1.1
+v1.2
+
+Store:
+
+* Version
+* Algorithm
+* Dataset
+* Training date
+* MAE
+* RMSE
+* R²
+* Status
+* Model path
+
+Statuses:
+
+* Draft
+* Active
+* Archived
+
+Only one model should be active for production predictions.
+
+---
+
+# 22. PREDICTION RESULT
+
+After prediction, display a beautiful result dashboard.
+
+Example:
+
+Estimated Property Price
+
+₹1.42 Crore
+
+Estimated Range:
+
+₹1.32 Cr — ₹1.52 Cr
+
+Price per sq.ft:
+
+₹9,467
+
+Prediction Confidence:
+
+87%
+
+Clearly label this as an estimated value and not a guaranteed market price.
+
+---
+
+# 23. PRICE RANGE
+
+Do not only display one number.
+
+Calculate an estimated range around the model prediction using a documented approach.
+
+Example:
+
+Prediction:
+
+₹1.42 Cr
+
+Range:
+
+₹1.32 Cr - ₹1.52 Cr
+
+The methodology should be configurable.
+
+---
+
+# 24. PRICE BREAKDOWN
+
+Create an explainability section.
+
+Display influential factors such as:
+
+Location
++₹41 L
+
+Area
++₹32 L
+
+Bedrooms
++₹18 L
+
+Amenities
++₹6 L
+
+Furnishing
++₹4 L
+
+Property Age
+-₹5 L
+
+Important:
+
+Do not falsely claim these values are exact causal contributions unless the model/explainability method supports that interpretation.
+
+Use SHAP or another appropriate explainability method if feasible.
+
+Label the section:
+
+"Factors influencing this estimate"
+
+---
+
+# 25. PROPERTY SUMMARY
+
+Display:
+
+* Property type
+* Location
+* Area
+* Bedrooms
+* Bathrooms
+* Floor
+* Property age
+* Furnishing
+* Parking
+* Amenities
+
+Use a clean card layout.
+
+---
+
+# 26. MARKET COMPARISON
+
+Show:
+
+Your Estimated Value
+
+versus
+
+Locality Average
+
+versus
+
+City Average
+
+Example:
+
+Your Property
+₹1.42 Cr
+
+Locality Average
+₹1.35 Cr
+
+City Average
+₹1.18 Cr
+
+Also show price per sq.ft.
+
+---
+
+# 27. MARKET TREND
+
+Create a market analytics section.
+
+Display:
+
+* Average price
+* Average price per sq.ft
+* Yearly growth
+* Demand level
+* Number of properties
+* Historical price trend
+
+Use Chart.js.
+
+Charts:
+
+1. Average property price over time
+2. Price per sq.ft over time
+3. Locality comparison
+4. Property type comparison
+
+---
+
+# 28. BUY/SELL INSIGHT
+
+Allow users to optionally enter their asking price.
+
+Compare:
+
+Estimated Value
+vs
+Asking Price
+
+Example:
+
+Estimated Value:
+₹1.42 Cr
+
+Asking Price:
+₹1.55 Cr
+
+Display:
+
+"The asking price is approximately 9% above the estimated market value."
+
+Use neutral language.
+
+Do not present this as financial advice.
+
+---
+
+# 29. PROPERTY COMPARISON
+
+Create:
+
+/compare
+
+Allow users to compare multiple properties.
+
+Compare:
+
+* Price
+* Price/sq.ft
+* Area
+* Bedrooms
+* Bathrooms
+* Location
+* Property age
+* Furnishing
+* Amenities
+* Estimated value
+* Market trend
+
+Display the comparison in a responsive table/card layout.
+
+---
+
+# 30. SAVED PROPERTIES
+
+Users can save properties.
+
+Features:
+
+* Save property
+* Remove saved property
+* View saved properties
+* Search saved properties
+* Filter by location
+* Filter by price
+
+---
+
+# 31. PREDICTION HISTORY
+
+Create:
+
+/predictions
+
+Show:
+
+* Date
+* Property
+* Location
+* Estimated price
+* Price range
+* Model version
+
+Actions:
+
+* View
+* Download PDF
+* Delete
+
+---
+
+# 32. USER DASHBOARD
+
+Create a professional dashboard.
+
+Cards:
+
+Total Predictions
+Saved Properties
+Price Alerts
+Average Estimated Value
+
+Charts:
+
+* Prediction history
+* Price trends
+* Saved locations
+
+Recent Predictions table.
+
+---
+
+# 33. PRICE ALERTS
+
+Allow users to create alerts.
+
+Example:
+
+Location:
+Whitefield
+
+Property Type:
+3 BHK
+
+Target Price:
+₹1.30 Cr
+
+Notify user when:
+
+* Estimated prices fall below target
+* New matching properties appear
+* Market changes significantly
+
+Use Laravel notifications and scheduled jobs.
+
+---
+
+# 34. PDF VALUATION REPORT
+
+Allow users to download a professional PDF report.
+
+Report should contain:
+
+HOUSE PRICE VALUATION REPORT
+
+Property Information
+
+Property Type
+Location
+Area
+Bedrooms
+Bathrooms
+Floor
+Property Age
+Furnishing
+Amenities
+
+Estimated Market Value
+
+₹1.42 Cr
+
+Estimated Range
+
+₹1.32 Cr - ₹1.52 Cr
+
+Price per sq.ft
+
+₹9,467
+
+Market Analysis
+
+Locality average
+City average
+Price trend
+
+Factors influencing estimate
+
+Model information
+
+Model version
+Prediction date
+
+Disclaimer:
+
+"This report provides an automated estimate based on available property and market data. It should not be considered a guaranteed valuation or professional financial, legal, or real-estate advice."
+
+Make the PDF professionally designed.
+
+---
+
+# 35. ADMIN PANEL
+
+Create:
+
+/admin
+
+Dashboard cards:
+
+Total Users
+Total Predictions
+Total Properties
+Total Locations
+Active ML Model
+Average Predicted Price
+
+Charts:
+
+* Predictions per day
+* Predictions by city
+* Predictions by property type
+* Average predicted price
+* User growth
+
+---
+
+# 36. ADMIN USER MANAGEMENT
+
+Admin can:
+
+* View users
+* Search users
+* Filter users
+* View user details
+* Block/unblock users
+* Delete users where appropriate
+
+Do not allow normal users to access admin routes.
+
+---
+
+# 37. ADMIN PROPERTY MANAGEMENT
+
+Admin can:
+
+* Add property
+* Edit property
+* Delete property
+* Search property
+* Filter property
+* Import properties
+* Export properties
+
+Fields should match the prediction/property schema.
+
+---
+
+# 38. LOCATION MANAGEMENT
+
+Create CRUD for:
+
+Countries
+States
+Cities
+Localities
+
+Hierarchy:
+
+Country
+↓
+State
+↓
+City
+↓
+Locality
+
+Each locality can contain:
+
+* Average price
+* Average price/sq.ft
+* Number of properties
+* Growth rate
+* Location score
+
+---
+
+# 39. AMENITY MANAGEMENT
+
+Admin can create:
+
+* Amenity name
+* Description
+* Icon
+* Status
+
+Examples:
+
+Parking
+Gym
+Swimming Pool
+Security
+Lift
+
+---
+
+# 40. DATASET MANAGEMENT
+
+Create an admin page:
+
+/admin/datasets
+
+Features:
+
+* Upload CSV
+* View dataset information
+* Validate dataset
+* Show row count
+* Show columns
+* Show missing values
+* Show duplicate count
+* Show invalid records
+* Import dataset
+* Archive dataset
+
+Before training, validate the dataset.
+
+---
+
+# 41. MODEL TRAINING DASHBOARD
+
+Create:
+
+/admin/ml-models
+
+Show:
+
+Model
+Version
+Algorithm
+Dataset
+MAE
+RMSE
+R²
+Training Date
+Status
+
+Buttons:
+
+Train New Model
+Activate
+Archive
+View Metrics
+
+Training should preferably run through a queue/background job.
+
+---
+
+# 42. MODEL PERFORMANCE
+
+Display charts for:
+
+* MAE
+* RMSE
+* R²
+* Actual vs Predicted
+* Residual analysis
+
+Show model comparison:
+
+Linear Regression
+Random Forest
+Gradient Boosting
+XGBoost
+
+Automatically highlight the best model.
+
+---
+
+# 43. DATABASE DESIGN
+
+Create migrations and models for:
+
+users
+roles
+properties
+property_amenities
+amenities
+countries
+states
+cities
+localities
+predictions
+prediction_factors
+saved_properties
+price_alerts
+market_data
+datasets
+ml_models
+model_metrics
+notifications
+admin_logs
+
+Use foreign keys and proper indexes.
+
+Use soft deletes where appropriate.
+
+---
+
+# 44. PREDICTIONS TABLE
+
+Suggested fields:
+
+id
+user_id
+property_id
+model_id
+input_data
+predicted_price
+minimum_price
+maximum_price
+confidence_score
+currency
+created_at
+updated_at
+
+Store input_data as JSON where appropriate so the original prediction input can be reproduced.
+
+---
+
+# 45. SECURITY
+
+Implement:
+
+* CSRF protection
+* XSS protection
+* SQL injection prevention
+* Request validation
+* Rate limiting
+* Authentication
+* Authorization
+* Secure API authentication
+* Password hashing
+* Secure file upload validation
+* Dataset upload restrictions
+* Admin middleware
+* Audit logging
+
+Never trust user input.
+
+---
+
+# 46. API SECURITY
+
+Laravel should communicate securely with the ML service.
+
+Use an environment variable for the ML service URL.
+
+Example:
+
+ML_SERVICE_URL=
+
+Never hardcode credentials or secrets.
+
+Implement timeout handling.
+
+If the ML service is unavailable, show:
+
+"Prediction service is temporarily unavailable. Please try again."
+
+Do not expose Python stack traces to users.
+
+---
+
+# 47. ERROR HANDLING
+
+Create proper error handling for:
+
+* Invalid form input
+* Missing data
+* ML service unavailable
+* Model unavailable
+* Dataset upload failure
+* Prediction failure
+* Unauthorized access
+* Invalid API requests
+
+Use proper Laravel exception handling.
+
+---
+
+# 48. LOGGING
+
+Log:
+
+* Prediction requests
+* Prediction failures
+* ML API failures
+* Admin actions
+* Dataset imports
+* Model training
+* Model activation
+
+Never log passwords or sensitive authentication information.
+
+---
+
+# 49. PERFORMANCE
+
+Optimize:
+
+* Database queries
+* API calls
+* Model loading
+* Prediction requests
+* Dashboard queries
+
+Load the ML model once when the FastAPI service starts rather than loading it for every request.
+
+Use caching for frequently requested market statistics.
+
+Use queues for:
+
+* Model training
+* PDF generation if necessary
+* Email notifications
+* Large dataset imports
+
+---
+
+# 50. RESPONSIVE DESIGN
+
+The entire application must work properly on:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+Test all major pages at:
+
+* 360px
+* 768px
+* 1024px
+* 1440px+
+
+Do not allow horizontal overflow.
+
+---
+
+# 51. UI COMPONENTS
+
+Create reusable components for:
+
+* Navbar
+* Sidebar
+* Footer
+* Buttons
+* Input fields
+* Select fields
+* Cards
+* Tables
+* Modal
+* Alert
+* Toast
+* Badge
+* Charts
+* Loading states
+* Empty states
+* Error states
+* Pagination
+* Breadcrumbs
+
+---
+
+# 52. SEARCH AND FILTER
+
+Implement search/filter wherever appropriate.
+
+Examples:
+
+Property search:
+
+* City
+* Locality
+* Property type
+* Bedrooms
+* Price
+* Area
+
+Prediction history:
+
+* Date
+* Location
+* Price range
+
+Admin properties:
+
+* City
+* Locality
+* Property type
+* Price
+
+---
+
+# 53. SEEDERS
+
+Create realistic database seeders.
+
+Include:
+
+* Admin user
+* Demo user
+* Cities
+* Localities
+* Amenities
+* Sample properties
+* Sample market data
+* Sample predictions
+* Sample ML model metrics
+
+Admin demo credentials should be configurable through environment variables or clearly documented seed credentials.
+
+---
+
+# 54. SAMPLE DATA
+
+Include sample Bangalore locations such as:
+
+* Whitefield
+* Electronic City
+* HSR Layout
+* Koramangala
+* Indiranagar
+* Sarjapur Road
+* Marathahalli
+* Hebbal
+* Yelahanka
+* Bannerghatta Road
+
+Do not imply that the sample values are real-time market valuations.
+
+Clearly label seed data as demo/sample data.
+
+---
+
+# 55. ENVIRONMENT CONFIGURATION
+
+Create:
+
+.env.example
+
+Include configuration for:
+
+APP_NAME
+APP_URL
+DB_CONNECTION
+DB_HOST
+DB_PORT
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+
+ML_SERVICE_URL
+
+MAIL configuration
+
+MAP configuration if needed
+
+Never commit actual secrets.
+
+---
+
+# 56. PROJECT DIRECTORY
+
+Use a clean structure similar to:
+
+house-price-predictor/
+
+```
+laravel-app/
+
+    app/
+    bootstrap/
+    config/
+    database/
+    public/
+    resources/
+    routes/
+    storage/
+    tests/
+    vite.config.js
+    composer.json
+
+ml-service/
+
+    app/
+    models/
+    datasets/
+    training/
+    tests/
+    requirements.txt
+
+docs/
+
+    architecture.md
+    api.md
+    ml.md
+    deployment.md
+
+README.md
+```
+
+---
+
+# 57. TESTING
+
+Implement automated tests.
+
+Laravel:
+
+* Authentication tests
+* Prediction validation tests
+* API tests
+* Authorization tests
+* Property tests
+* Admin tests
+
+Python:
+
+* Preprocessing tests
+* Prediction tests
+* API tests
+* Model loading tests
+
+Test:
+
+* Valid prediction
+* Invalid prediction
+* Missing required fields
+* ML service unavailable
+* Unauthorized API request
+* Admin access
+
+---
+
+# 58. API DOCUMENTATION
+
+Create clear API documentation.
+
+Document:
+
+POST /api/predict
+
+GET /api/health
+
+GET /api/locations
+
+GET /api/localities
+
+GET /api/properties
+
+GET /api/predictions
+
+POST /api/saved-properties
+
+POST /api/price-alerts
+
+Include:
+
+* Authentication
+* Request parameters
+* Response format
+* Validation errors
+* HTTP status codes
+
+---
+
+# 59. DASHBOARD DESIGN
+
+User dashboard:
+
+---
+
+## Welcome Back
+
+Estimated Market Insights
+
+[ Total Predictions ]
+[ Saved Properties ]
+[ Price Alerts ]
+[ Average Value ]
+
+---
+
+Prediction Activity
+[ Chart ]
+
+---
+
+Recent Predictions
+[ Table ]
+
+---
+
+Saved Properties
+[ Cards ]
+
+---
+
+Market Trends
+[ Charts ]
+
+---
+
+Admin dashboard should use the same professional design language.
+
+---
+
+# 60. IMPORTANT ML REQUIREMENTS
+
+The application must clearly separate:
+
+Training
+
+and
+
+Inference.
+
+Training pipeline:
+
+Dataset
+↓
+Validation
+↓
+Cleaning
+↓
+Feature Engineering
+↓
+Preprocessing
+↓
+Train Models
+↓
+Evaluate
+↓
+Select Best Model
+↓
+Save Model
+↓
+Register Model Version
+
+Inference pipeline:
+
+User Input
+↓
+Validation
+↓
+Same Preprocessing Pipeline
+↓
+Active Model
+↓
+Prediction
+↓
+Post-processing
+↓
+Result
+
+Never train the model using user prediction requests.
+
+---
+
+# 61. MODEL EXPLAINABILITY
+
+Where technically feasible, implement SHAP-based feature importance.
+
+Display:
+
+"Factors influencing this prediction"
+
+Example:
+
+Location
+████████████
+
+Area
+██████████
+
+Bedrooms
+███████
+
+Property Age
+████
+
+Amenities
+███
+
+Make it clear that feature importance represents model behavior rather than guaranteed real-world causation.
+
+---
+
+# 62. FUTURE-READY DESIGN
+
+Design the architecture so additional prediction types can be added later.
+
+Possible future models:
+
+* Rental price prediction
+* Property appreciation prediction
+* Rental yield prediction
+* Property investment scoring
+
+Do not hardcode the entire application around one ML model.
+
+Use service classes/interfaces where appropriate.
+
+---
+
+# 63. IMPORTANT DISCLAIMER
+
+Display a disclaimer on prediction results:
+
+"House Price Predictor provides an automated estimate based on the data available to the system. Actual property prices may vary based on market conditions, negotiations, property condition, legal status, location-specific factors and other circumstances. This estimate is not a guaranteed valuation or professional financial, legal, or real-estate advice."
+
+---
+
+# 64. FINAL USER FLOW
+
+Implement this complete flow:
+
+Landing Page
+↓
+Register/Login
+↓
+User Dashboard
+↓
+Predict House Price
+↓
+Enter Property Details
+↓
+Select Location
+↓
+Select Amenities
+↓
+Submit
+↓
+Laravel Validation
+↓
+FastAPI ML Service
+↓
+Feature Processing
+↓
+Active ML Model
+↓
+Prediction
+↓
+Price Range
+↓
+Prediction Confidence
+↓
+Factors Influencing Estimate
+↓
+Market Comparison
+↓
+Market Trend
+↓
+Save Prediction
+↓
+View History
+↓
+Compare Properties
+↓
+Download PDF
+
+---
+
+# 65. ADMIN FLOW
+
+Admin Login
+↓
+Admin Dashboard
+↓
+Manage Users
+↓
+Manage Properties
+↓
+Manage Locations
+↓
+Manage Amenities
+↓
+Upload Dataset
+↓
+Validate Dataset
+↓
+Train Model
+↓
+Evaluate Models
+↓
+Select Best Model
+↓
+Create Model Version
+↓
+Activate Model
+↓
+Monitor Predictions
+↓
+View Analytics
+
+---
+
+# 66. DEVELOPMENT RULES
+
+Follow these rules strictly:
+
+1. Write clean, modular and maintainable code.
+2. Follow Laravel conventions.
+3. Use migrations instead of manually creating database tables.
+4. Use Eloquent relationships.
+5. Use Form Requests for validation.
+6. Use Policies/Middleware for authorization.
+7. Use service classes for complex business logic.
+8. Use API Resources for API responses where appropriate.
+9. Do not place business logic directly inside controllers.
+10. Keep Python ML code independent from Laravel.
+11. Use environment variables for configuration.
+12. Never hardcode secrets.
+13. Use reusable frontend components.
+14. Provide proper loading, empty and error states.
+15. Use responsive design.
+16. Add comments only where they improve understanding.
+17. Avoid unnecessary dependencies.
+18. Write tests for important functionality.
+19. Include database seeders.
+20. Include complete README documentation.
+
+---
+
+# 67. DEVELOPMENT ORDER
+
+Build the project in this order:
+
+PHASE 1
+Project setup
+
+PHASE 2
+Database architecture
+
+PHASE 3
+Authentication and roles
+
+PHASE 4
+Public website
+
+PHASE 5
+Property and location management
+
+PHASE 6
+ML dataset and preprocessing
+
+PHASE 7
+ML model training pipeline
+
+PHASE 8
+FastAPI ML service
+
+PHASE 9
+Laravel → ML API integration
+
+PHASE 10
+Prediction UI
+
+PHASE 11
+Prediction results dashboard
+
+PHASE 12
+Prediction history
+
+PHASE 13
+Saved properties
+
+PHASE 14
+Property comparison
+
+PHASE 15
+Market analytics
+
+PHASE 16
+Price alerts
+
+PHASE 17
+PDF valuation report
+
+PHASE 18
+Admin dashboard
+
+PHASE 19
+Dataset management
+
+PHASE 20
+ML model management
+
+PHASE 21
+Testing
+
+PHASE 22
+Security hardening
+
+PHASE 23
+Performance optimization
+
+PHASE 24
+Deployment documentation
+
+---
+
+# 68. DELIVERABLES
+
+The final project must include:
+
+1. Complete Laravel application
+2. Complete Python ML service
+3. MySQL migrations
+4. Models
+5. Controllers
+6. Services
+7. Form Requests
+8. Policies
+9. API routes
+10. Blade/frontend pages
+11. Tailwind styling
+12. JavaScript
+13. Chart.js dashboards
+14. ML training scripts
+15. Preprocessing pipeline
+16. Trained model workflow
+17. FastAPI endpoints
+18. Database seeders
+19. Tests
+20. PDF generation
+21. Admin panel
+22. User dashboard
+23. Dataset management
+24. Model management
+25. API documentation
+26. README
+27. .env.example
+28. Deployment instructions
+
+---
+
+# 69. README REQUIREMENTS
+
+Create a detailed README containing:
+
+* Project overview
+* Features
+* Architecture
+* Requirements
+* Installation
+* Laravel setup
+* Database setup
+* Python environment setup
+* ML model training
+* FastAPI setup
+* Environment variables
+* Running the application
+* Running tests
+* API documentation
+* Deployment
+* Troubleshooting
+
+---
+
+# 70. FINAL QUALITY REQUIREMENT
+
+Do not build a prototype with fake buttons or placeholder functionality.
+
+Every major button should perform a real action.
+
+Every form should have validation.
+
+Every database feature should use real database operations.
+
+The prediction workflow must communicate with the actual Python ML service.
+
+The admin model-management workflow should work end-to-end.
+
+The application should be structured so that a real dataset can be supplied later and the model can be retrained.
+
+If an external service such as maps, email, payment, or notifications requires credentials, create the integration architecture and environment configuration without hardcoding credentials.
+
+Use sample/demo data where real data is unavailable and clearly label it as sample data.
+
+Build the project incrementally, verify each phase, fix errors before moving to the next phase, and keep the application runnable throughout development.
+
+The final result should look and behave like a professional AI-powered real-estate valuation SaaS platform, not a basic machine-learning demonstration.
+
+
+Start with Phase 1–4. Create the Laravel project, database architecture, authentication/roles, and public website. Do not move to ML until these phases are complete and tested
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-14T11:05:53+05:30.
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.8 Flash (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>
